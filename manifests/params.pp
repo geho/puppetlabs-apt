@@ -1,4 +1,6 @@
-class apt::params {
+class apt::params (
+  $aptprovider = '/usr/bin/aptitude'
+) {
 
   if $::osfamily != 'Debian' {
     fail('This module only works on Debian or derivatives like Ubuntu')
@@ -31,7 +33,8 @@ class apt::params {
   }
 
   $root           = '/etc/apt'
-  $provider       = '/usr/bin/apt-get'
+  #$provider       = '/usr/bin/apt-get'
+  $provider       = $aptprovider
   $sources_list   = "${root}/sources.list"
   $sources_list_d = "${root}/sources.list.d"
   $conf_d         = "${root}/apt.conf.d"
